@@ -36,6 +36,16 @@ def update_quality(items)
                 end
             end
             
+            # “Conjured” items degrade in Quality twice as fast as normal items
+            if item.name == 'Conjured Mana Cake'
+                item.quality -= 1
+            
+                # Once the sell by date has passed, Quality degrades twice as fast
+                if item.sell_in <= 0
+                    item.quality -= 1
+                end
+            end
+
             # THE GENERAL RULE
             # Once the sell by date has passed, Quality degrades twice as fast     
             if item.sell_in <= 0
